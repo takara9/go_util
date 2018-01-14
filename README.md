@@ -7,6 +7,8 @@
 * config.json テスト用のJSONデータ
 
 
+# テストコマンド
+
 go test github.com/takara9/go_util
 
-# go_util
+
