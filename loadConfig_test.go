@@ -4,14 +4,33 @@ import "testing"
 
 func TestCase001(t *testing.T) {
 
-	for i := 0; i < 10; i++ {
-		for j := 0; j < 10; j++ {
-			ret := addInt(i,j)
-			if ret != (i+j) {
-				t.Errorf("addInt(%d,%d)",i,j)
-			}
-		}
-	} 
 
+	ret := 0
+	logFn := "_test_logfile.txt"
+	ret = OpenLog(logFn)
+	if (ret != 0) {
+		t.Errorf("openLog(%s)",logFn)
+	}
+	Logger.Print("Open log")
+
+
+
+	cnfFn := "_test_config.json"
+	Logger.Print("Load _test_config.json")
+	ret = LoadConfig(cnfFn)
+
+	if (ret != 0 ) {
+		t.Errorf("loadConfig(%s)",cnfFn)
+	}
+
+	if (Config.IpAddress != "0.0.0.0") {
+		t.Errorf("Config.IpAddress(%s)",Config.IpAddress)
+	}
+
+	if (Config.TcpPort != "8080") {
+		t.Errorf("Config.TcpPort(%s)",Config.TcpPort)
+	}
+
+	Logger.Print("END OF TEST")
 }
 
